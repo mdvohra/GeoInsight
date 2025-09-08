@@ -4,6 +4,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+// @ts-ignore
 export async function POST(req) {
   const { usertext } = await req.json();
 
@@ -31,8 +32,9 @@ export async function POST(req) {
     const content = completion.choices[0].message.content;
     console.log("AI Response Content:", content);
 
-    // Extract the query name and data from the response
-    const queryData = content.split("|||");
+  // Extract the query name and data from the response
+  // @ts-ignore
+  const queryData = content.split("|||");
     const queryName = queryData[0]?.replace("query_name=", "").trim();
     const data = queryData[1]?.replace("data=", "").trim();
 
@@ -51,7 +53,8 @@ export async function POST(req) {
 
     return new Response(
       JSON.stringify({
-        message: error.message || "An error occurred",
+  // @ts-ignore
+  message: error.message || "An error occurred",
       }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
