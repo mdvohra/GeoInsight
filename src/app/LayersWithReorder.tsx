@@ -102,7 +102,7 @@ function LayersReorder({ layers, setLayers, map }: layerReorderPropType) {
     <div className="LayersReorder z-10">
       {/* <h1>Drag and Drop</h1> */}
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="todo">
+  <Droppable droppableId="todo" isDropDisabled={false} isCombineEnabled={false} ignoreContainerClipping={false}>
           {(provided) => (
             <div
               className="todo"
